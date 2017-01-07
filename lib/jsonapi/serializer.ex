@@ -15,11 +15,12 @@ defmodule JSONAPI.Serializer do
     end
 
     {to_include, encoded_data} = encode_data(view, data, conn, query_includes)
-    
+
     %{
       links: %{},
       data: encoded_data,
-      included: flatten_included(to_include)
+      included: flatten_included(to_include),
+      meta: view.meta(data, conn),
     }
   end
 
@@ -72,7 +73,7 @@ defmodule JSONAPI.Serializer do
         end
 
       if {rel_view, :include} == valid_include_view && is_data_loaded?(rel_data) do
-        rel_query_includes = 
+        rel_query_includes =
           if is_list(query_includes) do
             Keyword.get(query_includes, key, [])
           else

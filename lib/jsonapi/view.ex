@@ -85,6 +85,10 @@ defmodule JSONAPI.View do
         Map.take(data, fields)
       end
 
+      def meta(data, conn) do
+        %{}
+      end
+
       def relationships, do: []
       def fields, do: raise "Need to implement fields/0"
 
