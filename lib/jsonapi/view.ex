@@ -135,6 +135,7 @@ defmodule JSONAPI.View do
       end
 
       defoverridable attributes: 2,
+                     meta: 2,
                      fields: 0,
                      id: 1,
                      relationships: 0,
